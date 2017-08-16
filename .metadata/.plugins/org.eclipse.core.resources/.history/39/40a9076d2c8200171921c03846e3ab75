@@ -1,0 +1,32 @@
+package com.fqyuan.sort;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class RadixSort {
+	public void radixSort(int[] arr) {
+		// 1. Initialize the original buckets.
+		Queue<Integer>[] buckets = new LinkedList[10];
+		for (int i = 0; i < 10; i++)
+			buckets[i] = new LinkedList<>();
+		// 2. Sort the array from lsd to msd.
+		int exp = 1;
+		boolean sorted = false;
+		while (!sorted) {
+			sorted = true;
+			for (int val : arr) {
+				int bucket = val / exp % 10;
+				buckets[bucket].add(val);
+				if (bucket > 0)
+					sorted = false;
+			}
+			exp *= 10;
+			int index = 0;
+			for (int i = 0; i < 10; i++) {
+				while (!buckets[i].isEmpty())
+					arr[index++] = buckets[i].remove();
+			}
+		}
+
+	}
+}

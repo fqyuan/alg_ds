@@ -1,0 +1,12 @@
+package com.fqyuan.String;
+
+public class TestStr {
+	public static void main(String[] args){
+		String str1 = "someThing";
+		String str2 = "someThing";
+		if(str1==str2)
+			System.out.println("Same!");
+		else
+			System.out.println("Different!");
+	}
+}

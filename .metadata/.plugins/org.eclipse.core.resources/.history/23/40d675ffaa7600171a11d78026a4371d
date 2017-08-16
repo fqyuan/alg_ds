@@ -1,0 +1,18 @@
+package com.fqyuan.math;
+
+import java.util.ArrayList;
+
+import org.w3c.dom.traversal.NodeIterator;
+
+public class InsideRec {
+	public int cntInsideRec(ArrayList<Integer> A, ArrayList<Integer> B, ArrayList<Integer> C, ArrayList<Integer> D){
+		return 0;
+	}
+	public double recArea(int x1, int y1, int x2, int y2, int x3, int y3	){
+		double area = (x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2))/2;
+		
+		if(area <0)
+			area *= -1;
+		return area;
+	}
+}

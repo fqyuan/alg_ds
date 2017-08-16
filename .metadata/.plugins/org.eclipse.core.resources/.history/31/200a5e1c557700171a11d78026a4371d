@@ -1,0 +1,8 @@
+package com.fqyuan.maze;
+
+public class Palindrome {
+	public boolean isPalindrome(int a){
+		boolean flag =false;
+		
+	}
+}

@@ -1,0 +1,48 @@
+package com.fqyuan.search;
+
+public class PruneSearch {
+	public static int pruneAndSearch(int[] arr, int targetIndex) {
+		return pruneAndSearch(arr, targetIndex, 0, arr.length - 1);
+	}
+
+	private static int pruneAndSearch(int[] arr, int targetIndex, int low, int high) {
+		if (low < high)
+			return -1;
+		int pivotIndex = partitionDec(arr, low, high);
+		if (pivotIndex == targetIndex)
+			return arr[pivotIndex];
+		else if (pivotIndex < targetIndex)
+			return pruneAndSearch(arr, targetIndex, pivotIndex + 1, high);
+		else
+			return pruneAndSearch(arr, targetIndex, low, pivotIndex - 1);
+
+	}
+
+	private static int partitionInc(int[] arr, int low, int high) {
+		int pivotIndex = low;
+		int pivotValue = arr[high];
+		for (int i = low; i < high; i++) {
+			if (arr[i] < pivotValue)
+				swap(arr, i, pivotIndex++);
+		}
+		swap(arr, pivotIndex, high);
+		return pivotIndex;
+	}
+
+	private static int partitionDec(int[] arr, int low, int high) {
+		int pivotIndex = low;
+		int pivotValue = arr[low];
+		for (int i = low + 1; i < high; i++) {
+			if (arr[i] > pivotValue)
+				swap(arr, i, ++pivotIndex);
+		}
+		swap(arr, low, pivotIndex);
+		return pivotIndex;
+	}
+
+	private static void swap(int[] arr, int start, int end) {
+		int temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
+	}
+}

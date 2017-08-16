@@ -1,0 +1,9 @@
+package com.fqyuan.heap;
+
+public class Heap {
+	private static final int CAPACITY = 2;
+	private int size;
+	private int[] heap;
+
+	
+}   

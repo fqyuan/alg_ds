@@ -1,0 +1,6 @@
+package com.fqyuan.math;
+
+public class PowerOfTwoInteger {
+	public boolean isPower(int a) {
+	}
+}

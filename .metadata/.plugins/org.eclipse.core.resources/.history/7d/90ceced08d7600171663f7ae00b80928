@@ -1,0 +1,15 @@
+package com.fqyuan.math;
+
+public class PowerOfTwoInteger {
+	public boolean isPower(int a) {
+		if(a==1)
+			return true;
+		for(int i=1; i<=Math.sqrt(a); i++){
+			for(int j=2; j<=Math.log(a); j++){
+				if(Math.pow(i, j)==a)
+					return true;
+			}
+		}
+		return false;
+	}
+}

@@ -1,0 +1,26 @@
+package com.fqyuan.sort;
+
+public class HeapSort {
+	public void heapSort(int[] arr) {
+
+	}
+
+	private void percolateDown(int[] arr, int k, int n) {
+		while (2 * k < n) {
+			int j = 2 * k;
+			if (j < n && arr[j] < arr[j + 1])
+				j++;
+			if (arr[k] >= arr[j])
+				break;
+			swap(arr, j, k);
+			k = j;
+
+		}
+	}
+
+	private void swap(int[] arr, int i, int j) {
+		int temp = arr[i - 1];
+		arr[i - 1] = arr[j - 1];
+		arr[j - 1] = temp;
+	}
+}

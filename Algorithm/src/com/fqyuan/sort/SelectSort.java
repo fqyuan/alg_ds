@@ -1,0 +1,29 @@
+package com.fqyuan.sort;
+
+import static com.fqyuan.utils.Utils.genRanArr;
+import static com.fqyuan.utils.Utils.printArr;
+import static com.fqyuan.utils.Utils.swap;
+
+import org.junit.Test;
+
+public class SelectSort {
+	public static void selectSort(int[] arr) {
+		for (int i = 0; i < arr.length - 1; i++) {
+			int minIndex = i;
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[j] < arr[minIndex])
+					minIndex = j;
+			}
+			swap(arr, i, minIndex);
+		}
+	}
+
+	@Test
+	public void test() {
+		int len = 30;
+		int[] arr = genRanArr(len);
+		printArr(arr);
+		selectSort(arr);
+		printArr(arr);
+	}
+}

@@ -1,0 +1,32 @@
+package com.fqyuan.sort;
+
+import java.util.Collections;
+import java.util.LinkedList;
+
+public class BucketSort {
+	public void bucketSort(int[] arr) {
+		// 1. Initial the buckets.
+		final int bucketCnt = 10;
+		LinkedList<Integer>[] buckets = new LinkedList[bucketCnt];
+		for (int i = 0; i < bucketCnt; i++)
+			buckets[i] = new LinkedList<>();
+		// 2. Scatter the elements into the buckets.
+		int minVal = arr[0], maxVal = arr[0];
+		for (int val : arr) {
+			if (val < minVal)
+				minVal = val;
+			if (val > maxVal)
+				maxVal = val;
+		}
+		double interval = ((double)(maxVal-minVal+1))/bucketCnt;
+		for(int val: arr){
+			int bucket = (int)((val-minVal)/interval);
+			buckets[bucket].add(val);
+		}
+		// 3. Sort each bucktes element.
+		for(LinkedList<Integer> list: buckets)
+			Collections.sort(list);
+		// 4. Gather the array.
+		
+	}
+}

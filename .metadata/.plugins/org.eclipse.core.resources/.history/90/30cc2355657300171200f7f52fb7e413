@@ -1,0 +1,15 @@
+package com.fqyuan.utils;
+
+import java.awt.RadialGradientPaint;
+import java.util.Random;
+
+public class Utils {
+	public static int[] genRanArr(int len){
+		int [] arr = new int[len];
+		Random random = new Random();
+		for(int i=0; i<len; i++)
+			arr[i]=random.nextInt(len);
+		return arr;
+		
+	}
+}

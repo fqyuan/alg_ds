@@ -1,0 +1,38 @@
+package com.fqyuan.utils;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class Utils {
+	public static int[] genRanArr(int len) {
+		int[] arr = new int[len];
+		Random random = new Random();
+		for (int i = 0; i < len; i++)
+			arr[i] = random.nextInt(len);
+		return arr;
+
+	}
+
+	public static int[] genSortedArr(int len) {
+		int[] arr = new int[len];
+		Random random = new Random();
+		for (int i = 0; i < len; i++)
+			arr[i] = random.nextInt(len);
+		Arrays.sort(arr);
+		return arr;
+
+	}
+
+	public static void swap(int[] arr, int first, int second) {
+		int temp = arr[first];
+		arr[first] = arr[second];
+		arr[second] = temp;
+	}
+	public static void printArr(int[] arr){
+		for(int i=0; i<arr.length; i++){
+			System.out.printf("%-3d%s",arr[i], " ");
+			if((i+1)%10==0)
+				System.out.println();
+		}
+	}
+}

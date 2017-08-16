@@ -1,0 +1,23 @@
+package com.fqyuan.search;
+
+class B {
+	public int a = 0;
+
+	public void fun() {
+		System.out.println("---A");
+	}
+}
+
+public class B extends B {
+	public int a = 1;
+
+	public void fun() {
+		System.out.println("---B");
+	}
+
+	public static void main(String[] args) {
+		B cA = new B();
+		System.out.println(cA.a);
+		cA.fun();
+	}
+}

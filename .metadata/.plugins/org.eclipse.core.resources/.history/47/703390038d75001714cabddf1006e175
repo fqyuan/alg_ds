@@ -1,0 +1,31 @@
+package com.fqyuan.Wrapper;
+
+public class TestWrapper {
+
+	public static void main(String[] args) {
+		Foo f1 = new Foo();
+		Foo f2 = new Foo();
+		Foo f3 = new Foo();
+		Integer i = new Integer(1);
+		f1.setValue(i);
+		++i;
+		f2.setValue(i);
+		++i;
+		f3.setValue(i);
+		System.out.println(f1.getValue()+" "+f2.getValue()+" "+f3.getValue());
+	
+	}
+
+}
+
+class Foo {
+	private Integer value;
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+
+	public Integer getValue() {
+		return value;
+	}
+}

@@ -1,0 +1,25 @@
+package com.fqyuan.math;
+
+import java.util.ArrayList;
+
+public class MinPrimeSum {
+	public ArrayList<Integer> primeSum(int a){
+		ArrayList<Integer> result = new ArrayList<>();
+		for(int i=2; i<a; i++){
+			if(isPrime(i)&&isPrime(a-i)){
+				result.add(i);
+				result.add(a-i);
+				break;
+			}
+				
+		}
+		return result;
+	}
+	private boolean isPrime(int num){
+		for(int i=2; i<=(int)Math.sqrt(num); i++){
+			if(num % i ==0)
+				return false;
+		}
+		return true;
+	}
+}

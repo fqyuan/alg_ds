@@ -1,0 +1,5 @@
+package com.fqyuan.sort;
+
+public class MergeSort {
+
+}

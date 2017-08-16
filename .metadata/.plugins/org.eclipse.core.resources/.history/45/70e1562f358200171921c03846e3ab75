@@ -1,0 +1,10 @@
+package com.fqyuan.sort;
+
+public class BucketSort {
+	public void bucketSort(int[] arr) {
+		// 1.Initial the buckets.
+		// 2.
+		// 3.
+		// 4.
+	}
+}

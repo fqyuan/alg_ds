@@ -1,0 +1,11 @@
+package com.fqyuan.search;
+
+public class PruneSearch {
+	public static int pruneAndSearch(int[] arr, int targetIndex) {
+		return -1;
+	}
+
+	private static int pruneAndSearch(int[] arr, int targetIndex, int low, int high) {
+
+	}
+}

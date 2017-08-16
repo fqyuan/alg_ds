@@ -1,0 +1,24 @@
+package com.fqyuan.utils;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class Utils {
+	public static int[] genRanArr(int len) {
+		int[] arr = new int[len];
+		Random random = new Random();
+		for (int i = 0; i < len; i++)
+			arr[i] = random.nextInt(len);
+		return arr;
+
+	}
+	public static int[] genSortedArr(int len) {
+		int[] arr = new int[len];
+		Random random = new Random();
+		for (int i = 0; i < len; i++)
+			arr[i] = random.nextInt(len);
+		Arrays.sort(arr);
+		return arr;
+
+	}
+}

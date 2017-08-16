@@ -1,0 +1,37 @@
+package com.fqyuan.sort;
+
+import static com.fqyuan.utils.Utils.genRanArr;
+import static com.fqyuan.utils.Utils.printArr;
+
+import org.junit.Test;
+
+public class CountSort {
+	public void countSort(int[] arr) {
+		// 1. Generate the original bucket array of maxValue+1
+		int maxValue = arr[0];
+		for (int val : arr)
+			if (val > maxValue)
+				maxValue = val;
+		int[] buckets = new int[maxValue + 1];
+		int[] sortedArr = new int[arr.length];
+		for (int val : arr)
+			buckets[val]++;
+		// 2. Gather elements into sortedArr.
+		int index = 0;
+		for (int i = 0; i <= maxValue; i++) {
+			for (int j = 0; j < buckets[i]; j++)
+				sortedArr[index++] = i;
+		}
+		// 3. Copy into the original array.
+		System.arraycopy(sortedArr, 0, arr, 0, arr.length);
+	}
+
+	@Test
+	public void test() {
+		int len = 10;
+		int[] arr = genRanArr(len);
+		printArr(arr);
+		countSort(arr);
+		printArr(arr);
+	}
+}

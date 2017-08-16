@@ -1,0 +1,26 @@
+package com.fqyuan.staticClass;
+
+public class TestStatic {
+
+	public static void main(String[] args) {
+
+	}
+
+}
+
+class Singleton {
+	private Singleton() {
+
+	}
+
+	/*
+	 * 
+	 */
+	private static  class LazyHolder {
+		private static Singleton INSTANCE = new Singleton();
+	}
+
+	public static Singleton getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+}

@@ -1,0 +1,12 @@
+package com.fqyuan.String;
+
+public class StrMut {
+
+	public static void main(String[] args) {
+		String str = "stack";
+		System.out.println(str);
+		str = "queue";
+		System.out.println(str);
+	}
+
+}

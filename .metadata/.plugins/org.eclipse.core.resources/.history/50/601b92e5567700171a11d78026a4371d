@@ -1,0 +1,14 @@
+package com.fqyuan.math;
+
+import java.security.interfaces.RSAKey;
+
+public class GCD {
+	public int gcd(int a, int b) {
+		int res = -1;
+		for(int i=2; i<a &&i <b; i++){
+			if(a%i==0 && b%i==0)
+				res = i;
+		}
+		return res;
+	}
+}

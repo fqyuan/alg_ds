@@ -1,0 +1,14 @@
+package com.fqyuan.String;
+
+public class TestStr {
+	public static void main(String[] args) {
+		String str1 = "someThing";
+		String str2 = "someThing";
+		String str3 = new String("someThing");
+		String str4 = new String("someThing");
+		if (str4.intern() == str2)
+			System.out.println("Same!");
+		else
+			System.out.println("Different!");
+	}
+}

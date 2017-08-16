@@ -1,0 +1,49 @@
+package com.fqyuan.sort;
+
+import javax.rmi.CORBA.Util;
+
+import org.junit.Test;
+
+import com.fqyuan.utils.Utils;
+
+public class HeapSort {
+	public void heapSort(Comparable<Integer>[] arr) {
+		int n = arr.length;
+		for (int k = n / 2; k >= 1; k--)
+			percolateDown(arr, k, n);
+		while (n > 1) {
+			swap(arr, 1, n--);
+			percolateDown(arr, 1, n);
+		}
+
+	}
+
+	private void percolateDown(Comparable<Integer>[] arr, int k, int n) {
+		while (2 * k < n) {
+			int j = 2 * k;
+			while (j < n && lessThan(arr, j, j + 1))
+				j++;
+			if (!lessThan(arr, k, j))
+				break;
+			swap(arr, k, j);
+			k = j;
+		}
+	}
+
+	private void swap(Comparable<Integer>[] arr, int i, int j) {
+		Comparable<Integer> temp = arr[i - 1];
+		arr[i - 1] = arr[j - 1];
+		arr[j - 1] = temp;
+	}
+
+	private boolean lessThan(Comparable[] arr, int i, int j) {
+		return arr[i - 1].compareTo(arr[j - 1]) < 0;
+	}
+
+	@Test
+	public void test(){
+		int [] arr = Utils.genRanArr(20);
+		Utils.printArr(arr);
+//		heapSort(arr);
+	}
+}

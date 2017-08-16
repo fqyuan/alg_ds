@@ -1,0 +1,90 @@
+package com.fqyuan.maze;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+
+public class MyMaze {
+	static class Coord {
+		/*
+		 * Why y goes before x? The coordination goes as follows. y axis are of
+		 * the contrary of the traditonal way.
+		 */
+		private int y;
+		private int x;
+
+		public Coord(int y, int x) {
+			this.y = y;
+			this.x = x;
+		}
+
+		@Override
+		public String toString() {
+			return String.valueOf(y).concat(String.valueOf(x));
+		}
+	}
+
+	public static void main(String[] args) {
+		char[][] board = { { '0', '2', '1', '1', '1' }, { '0', '1', '0', '0', '1' }, { '0', '0', '0', '0', '1' },
+				{ '0', '0', 'A', '0', '1' }, { '1', '1', 'a', '1', '1' }, { '1', 'b', '0', '0', 'B' },
+				{ '1', '1', '0', '0', '1' }, { '0', '1', '0', '0', '3' } };
+	}
+
+	public static ArrayList<Coord> shortestPath(char[][] board) {
+		ArrayList<Coord> shortestPathToGoal = new ArrayList<>();
+		for (int y = 0; y < board.length; y++) {
+			for (int x = 0; x < board[y].length; x++) {
+				if (board[y][x] == '2') {
+					walk(board, y, x, 0, initVisited(board), new ArrayDeque<Coord>(), shortestPathToGoal);
+				}
+			}
+		}
+		return shortestPathToGoal;
+	}
+
+	private static void walk(char[][] board, int y, int x, int keyRing, boolean[][] visited, ArrayDeque<Coord> path,
+			ArrayList<Coord> shortestPath) {
+		if (y < 0 || y > board.length || x < 0 || x > board[y].length || visited[y][x])
+			return; // Out of boundary.
+		char point = board[y][x];
+		if (point == '0')
+			return;
+		if (point == '3') {
+			shortestPath.clear();
+			shortestPath.addAll(path);
+			shortestPath.add(new Coord(y, x));
+			return;
+		}
+		if (!shortestPath.isEmpty() && path.size() + 2 >= shortestPath.size())
+			return;
+		// Deal with key lock issue.
+		if (point >= 'A' && point <= 'Z') {
+			if ((keyRing & (1 << (point - 'A'))) == 0)
+				return;
+		} else if (point >= 'a' && point <= 'z') {
+			if ((keyRing & (1 << (point - 'a'))) == 0) {
+				keyRing |= (1 << (point - 'a'));
+				visited = initVisited(board);
+			}
+		}
+
+		visited[y][x] = true;
+		path.addLast(new Coord(y, x));
+		// Up
+		walk(board, y - 1, x, keyRing, visited, path, shortestPath);
+		// Right
+		walk(board, y, x + 1, keyRing, visited, path, shortestPath);
+		// Down
+		walk(board, y + 1, x, keyRing, visited, path, shortestPath);
+		// Left
+		walk(board, y, x - 1, keyRing, visited, path, shortestPath);
+		path.removeLast();
+		visited[y][x] = false;
+	}
+
+	private static boolean[][] initVisited(char[][] board) {
+		boolean visited[][] = new boolean[board.length][];
+		for (int y = 0; y < board[y].length; y++)
+			visited[y] = new boolean[board[y].length];
+		return visited;
+	}
+}

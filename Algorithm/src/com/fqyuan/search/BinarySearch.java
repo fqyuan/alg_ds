@@ -1,0 +1,56 @@
+package com.fqyuan.search;
+
+import java.util.Arrays;
+import java.util.Random;
+
+import org.junit.Test;
+
+public class BinarySearch {
+	public static int binarySearchNonRec(int[] arr, int target) {
+		int low = 0;
+		int high = arr.length - 1;
+		int mid;
+		while (low <= high) {
+			mid = low + (high - low) / 2;
+			if (arr[mid] == target)
+				return mid;
+			else if (target < arr[mid])
+				high = mid - 1;
+			else {
+				low = mid + 1;
+			}
+		}
+		return -1;
+	}
+
+	public static int binarySearchRec(int[] arr, int target) {
+		return binarySearchRec(arr, target, 0, arr.length - 1);
+	}
+
+	private static int binarySearchRec(int[] arr, int target, int low, int high) {
+		if (low > high)
+			return -1;
+		int mid = low + (high - low) / 2;
+		if (arr[mid] == target)
+			return mid;
+		else if (target < arr[mid])
+			return binarySearchRec(arr, target, low, mid - 1);
+		else {
+			return binarySearchRec(arr, target, mid + 1, high);
+		}
+	}
+
+	@Test
+	public void test() {
+		int[] arr = new int[100];
+		Random random = new Random();
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = random.nextInt(arr.length);
+		Arrays.sort(arr);
+		SearchUtils.printArr(arr);
+		if (binarySearchRec(arr, 50) != -1)
+			System.out.println("Found 50 at: " + binarySearchRec(arr, 50));
+		else
+			System.out.println("Not found.");
+	}
+}

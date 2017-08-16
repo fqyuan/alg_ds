@@ -1,0 +1,5 @@
+package com.fqyuan.concurrency;
+
+public class Philosopher {
+
+}

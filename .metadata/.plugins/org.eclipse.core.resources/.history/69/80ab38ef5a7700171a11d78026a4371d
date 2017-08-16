@@ -1,0 +1,6 @@
+package com.fqyuan.math;
+
+public class TrailingZero {
+	public int trailingZeroes(int a) {
+	}
+}

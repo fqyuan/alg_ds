@@ -1,0 +1,22 @@
+package com.fqyuan.maze;
+
+import java.util.ArrayList;
+
+public class MyMaze {
+	public ArrayList<Coord> shortestPath(){
+		
+	}
+	
+}
+class Coord{
+	private int y;
+	private int x;
+	public Coord(int y, int x){
+		this.y = y;
+		this.x = x;
+	}
+	@Override
+	public String toString(){
+		return String.valueOf(y).concat(String.valueOf(x));
+	}
+}

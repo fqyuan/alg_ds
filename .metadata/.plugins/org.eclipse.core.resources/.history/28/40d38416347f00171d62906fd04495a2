@@ -1,0 +1,13 @@
+package com.fqyuan.heap;
+
+public class Heap {
+	private static final int CAPACITY = 2;
+	private int size;
+	private int[] heap;
+
+	private void doubleSize() {
+		int[] old = heap;
+		heap = new int[heap.length * 2];
+		System.arraycopy(old, 1, heap, 1, size);
+	}
+}

@@ -1,0 +1,54 @@
+package com.fqyuan.sort;
+
+import java.util.Random;
+
+import org.junit.Test;
+
+public class HeapSort {
+	public void heapSort(Comparable<Integer>[] arr) {
+		int n = arr.length;
+		for (int k = n / 2; k >= 1; k--)
+			percolateDown(arr, k, n);
+		while (n > 1) {
+			swap(arr, 1, n--);
+			percolateDown(arr, 1, n);
+		}
+
+	}
+
+	private void percolateDown(Comparable<Integer>[] arr, int k, int n) {
+		while (2 * k < n) {
+			int j = 2 * k;
+			while (j < n && lessThan(arr, j, j + 1))
+				j++;
+			if (!lessThan(arr, k, j))
+				break;
+			swap(arr, k, j);
+			k = j;
+		}
+	}
+
+	private void swap(Comparable<Integer>[] arr, int i, int j) {
+		Comparable<Integer> temp = arr[i - 1];
+		arr[i - 1] = arr[j - 1];
+		arr[j - 1] = temp;
+	}
+
+	private boolean lessThan(Comparable[] arr, int i, int j) {
+		return arr[i - 1].compareTo(arr[j - 1]) < 0;
+	}
+
+	@Test
+	public void test() {
+		Random random = new Random();
+		Comparable[] arr = new Comparable[10];
+		for (int i = 0; i < 10; i++)
+			arr[i] = random.nextInt(100);
+		// heapSort(arr);
+		for (int i = 0; i < 10; i++)
+			System.out.printf("%-2d%s", arr[i], " ");
+		heapSort(arr);
+		for (int i = 0; i < 10; i++)
+			System.out.printf("%-2d%s", arr[i], " ");
+	}
+}

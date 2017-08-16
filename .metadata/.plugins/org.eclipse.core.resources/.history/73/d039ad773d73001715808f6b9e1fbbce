@@ -1,0 +1,30 @@
+package com.fqyuan.search;
+
+public class InterpolateSearch {
+	public static int interpolateSearchNonRec(int[] arr, int target) {
+		int low = 0;
+		int high = arr.length - 1;
+		int mid;
+
+		while (target >= arr[low] && target <= arr[high]) {
+			if (arr[low] == arr[high])
+				return (low + high) / 2;
+			mid = low + (high - low) / (arr[high] - arr[low]) * (target - arr[low]);
+			if (target == arr[mid])
+				return mid;
+			else if (target < arr[mid])
+				high = mid - 1;
+			else
+				low = mid + 1;
+		}
+		return -1;
+	}
+
+	public static int interpolateSearchRec(int[] arr, int target) {
+		return -1;
+	}
+
+	private static int interpolateSearchRec(int[] arr, int target, int low, int high) {
+		return -1;
+	}
+}

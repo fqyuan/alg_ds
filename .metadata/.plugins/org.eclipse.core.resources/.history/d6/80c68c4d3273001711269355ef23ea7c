@@ -1,0 +1,15 @@
+package com.fqyuan.search;
+
+public class LinearSearch {
+	public static int linearch(int[]arr, int target){
+		int index = -1;
+		for(int i=0; i<arr.length; i++){
+			if(target==arr[i])
+			{
+				index = i;
+				break;
+			}
+		}
+		return index;
+	}
+}

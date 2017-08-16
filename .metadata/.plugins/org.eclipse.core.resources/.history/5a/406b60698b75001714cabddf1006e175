@@ -1,0 +1,37 @@
+package com.fqyuan.String;
+
+public class TestStr {
+	public static void main(String[] args) {
+		String str1 = "someThing";
+		String str2 = "someThing";
+		String str3 = new String("someThing");
+		String str4 = new String("someThing");
+		/*
+		 * 简言之，equal方法如果没有被重写，那么其效用和'=='相同。 如果重写了equqls()方法，那么记得重写hashCode方法。
+		 */
+		if (str1 == str2)
+			System.out.println("str1 == str2");
+		else
+			System.out.println("str1 != str2");
+		if (str1 == str3)
+			System.out.println("str1 == str3");
+		else
+			System.out.println("str1 != str3");
+		if (str3 == str4)
+			System.out.println("str3 == str4");
+		else
+			System.out.println("str3 !=str4");
+
+		if (str1 == str3.intern())
+			System.out.println("str1 == str3.intern()");
+		else
+			System.out.println("str1 != str3.intern()");
+
+		if (str4.intern() == str3.intern())
+			System.out.println("str4() == str3.intern()");
+		else
+			System.out.println("str4.intern() != str3.intern()");
+
+		System.out.println("str1.equals(str3): " + str1.equals(str3));
+	}
+}

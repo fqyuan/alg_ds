@@ -1,0 +1,217 @@
+package com.fqyuan.sort;
+
+import java.util.Random;
+
+import org.junit.Test;
+
+public class SortUtils {
+
+	/**
+	 * @param arr
+	 * @author fqyuan
+	 * @see 这里的swap操作在第二层循环之外，减少了交换的次数，改善了部分性能。
+	 */
+	public static void selectSort(int[] arr) {
+
+		for (int i = 0; i < arr.length - 1; i++) {
+			int minIndex = i;
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[minIndex] > arr[j])
+					minIndex = j;
+			}
+			swap(arr, minIndex, i);
+		}
+	}
+
+	/**
+	 * @param arr
+	 * @author fqyuan
+	 * @see 加入了sorted flag之后，如果是已经排序好的数组，可以大幅减少排序swap次数。
+	 */
+	public static void bubbleSort(int[] arr) {
+		for (int i = 0; i < arr.length - 1; i++) {
+			boolean sorted = true;
+			for (int j = 0; j < arr.length - i - 1; j++) {
+				if (arr[j] > arr[j + 1]) {
+					swap(arr, j, j + 1);
+					sorted = false;
+				}
+			}
+			if (sorted)
+				break;
+		}
+	}
+
+	/**
+	 * @param arr
+	 * @author fqyuan
+	 * @see A little twisted among the 3 simple sort method:
+	 *      select/insert/bubble.
+	 */
+	public static void insertSort(int[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			int key = arr[i];
+			int j = i - 1;
+			// Find the position to insert at: j.
+			for (; j >= 0 && arr[j] > key; j--)
+				arr[j + 1] = arr[j];
+			arr[j + 1] = key;
+		}
+	}
+
+	public static void mergeSort(int[] arr) {
+		if (arr.length < 2)
+			return;
+		int mid = arr.length / 2;
+		int[] left = new int[arr.length / 2];
+		int[] right = new int[arr.length - mid];
+		for (int i = 0; i < mid; i++)
+			left[i] = arr[i];
+		for (int i = mid; i < arr.length; i++)
+			right[i - mid] = arr[i];
+
+		mergeSort(left);
+		mergeSort(right);
+		merge(left, right, arr);
+	}
+
+	private static void merge(int[] left, int[] right, int[] arr) {
+		int nL = left.length;
+		int nR = right.length;
+		int i = 0, j = 0, k = 0;
+		while (i < nL && j < nR) {
+			if (left[i] <= right[j])
+				arr[k++] = left[i++];
+			else
+				arr[k++] = right[j++];
+		}
+		if (i < nL) {
+			while (i < nL)
+				arr[k++] = left[i++];
+		} else {
+			while (j < nR)
+				arr[k++] = right[j++];
+		}
+	}
+
+	public static void quickSort(int arr[]) {
+		quickSort(arr, 0, arr.length - 1);
+	}
+
+	private static void quickSort(int[] arr, int startIndex, int endIndex) {
+		if (startIndex < endIndex) {
+			int pIndex = partition(arr, startIndex, endIndex);
+			quickSort(arr, startIndex, pIndex - 1);
+			quickSort(arr, pIndex + 1, endIndex);
+		}
+	}
+
+	private static int partition(int arr[], int startIndex, int endIndex) {
+		// Randomize the pivot.
+		Random random = new Random();
+		int randomIndex = (int) (Math.floor(random.nextInt(endIndex - startIndex + 1)));
+		swap(arr, randomIndex, endIndex);
+
+		int pivot = arr[endIndex];
+		int pIndex = startIndex;
+		for (int i = startIndex; i <= endIndex; i++) {
+			if (arr[i] < pivot) {
+				swap(arr, i, pIndex);
+				pIndex++;
+			}
+		}
+		swap(arr, pIndex, endIndex);
+
+		return pIndex;
+	}
+
+	private static void swap(int[] arr, int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+
+	public void printArr(int arr[]) {
+		// for (int val : arr)
+		// System.out.print(val + " ");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+			if ((i + 1) % 10 == 0)
+				System.out.println();
+		}
+		System.out.println();
+	}
+
+	@Test
+	public void test() {
+
+		// selectSort time test.
+		long start = System.currentTimeMillis();
+		Random random = new Random();
+		int[] arr = new int[100000];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = random.nextInt(100000);
+		// printArr(arr);
+		selectSort(arr);
+		// printArr(arr);
+		long end = System.currentTimeMillis();
+		System.out.println("Select Sort -- time taken is: " + (end - start) + "ms");
+
+		// insertSort time test
+		start = System.currentTimeMillis();
+		arr = new int[100000];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = random.nextInt(100000);
+		// printArr(arr);
+		insertSort(arr);
+		// printArr(arr);
+		end = System.currentTimeMillis();
+		System.out.println("Insert Sort -- time taken is: " + (end - start) + "ms");
+
+		// bubbleSort time test
+		start = System.currentTimeMillis();
+		arr = new int[100000];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = random.nextInt(100000);
+		// printArr(arr);
+		bubbleSort(arr);
+		// printArr(arr);
+		end = System.currentTimeMillis();
+		System.out.println("Bubble Sort -- time taken is: " + (end - start) + "ms");
+
+		// mergeSort time test
+		start = System.currentTimeMillis();
+		arr = new int[100000];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = random.nextInt(100000);
+		// printArr(arr);
+		mergeSort(arr);
+		// printArr(arr);
+		end = System.currentTimeMillis();
+		System.out.println("Merge Sort -- time taken is: " + (end - start) + "ms");
+
+		// quickSort time test
+		start = System.currentTimeMillis();
+		arr = new int[100000];
+		for (int i = 0; i < arr.length; i++)
+			arr[i] = random.nextInt(100000);
+		// printArr(arr);
+		quickSort(arr);
+		// printArr(arr);
+		end = System.currentTimeMillis();
+		System.out.println("Quick Sort -- time taken is: " + (end - start) + "ms");
+
+	}
+
+	@Test
+	public void test1() {
+		Random random = new Random();
+		int[] arr = new int[100];
+		for (int i = 0; i < 100; i++) {
+			arr[i] = random.nextInt(100);
+		}
+		printArr(arr);
+		mergeSort(arr);
+		printArr(arr);
+	}
+}

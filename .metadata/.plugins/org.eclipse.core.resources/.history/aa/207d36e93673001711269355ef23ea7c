@@ -1,0 +1,9 @@
+package com.fqyuan.search;
+
+public class InterpolateSearch {
+	public static int interpolateSearchNonRec(int[] arr, int target){
+		
+	}
+	public static int interpolateSearchRec(int[]arr, int target, int low, int high){
+}
+}

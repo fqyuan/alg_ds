@@ -1,0 +1,18 @@
+package com.fqyuan.heap;
+
+public class Heap {
+	private static final int CAPACITY = 2;
+	private int size;
+	private int[] heap;
+
+	public Heap() {
+		size = 0;
+		heap = new int[CAPACITY];
+	}
+
+	public Heap(int[] arr) {
+		size = arr.length;
+		heap = new int[arr.length + 1];
+		System.arraycopy(arr, 0, heap, 1, arr.length);
+	}
+}

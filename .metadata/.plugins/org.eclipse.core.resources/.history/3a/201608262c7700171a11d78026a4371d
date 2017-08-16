@@ -1,0 +1,29 @@
+package com.fqyuan.maze;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class MyMaze {
+	class Coord {
+		private int y;
+		private int x;
+
+		public Coord(int y, int x) {
+			this.y = y;
+			this.x = x;
+		}
+
+		@Override
+		public String toString() {
+			return String.valueOf(y).concat(String.valueOf(x));
+		}
+	}
+	public ArrayList<Coord> shortestPath(char[][] board) {
+		ArrayList<Coord> shortestPathToGoal = new ArrayList<>();
+		
+		return shortestPathToGoal;
+	}
+
+}
+
+

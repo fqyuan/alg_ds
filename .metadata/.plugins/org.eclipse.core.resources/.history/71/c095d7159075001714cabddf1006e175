@@ -1,0 +1,39 @@
+package com.fqyuan.Wrapper;
+
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class TestWrapper {
+
+	public static void main(String[] args) {
+		Foo f1 = new Foo();
+		Foo f2 = new Foo();
+		Foo f3 = new Foo();
+		AtomicInteger i = new AtomicInteger(1);
+		f1.setValue(i);
+		i.incrementAndGet();
+		f2.setValue(i);
+		i.incrementAndGet();
+		f3.setValue(i);
+		System.out.println(f1.getValue() + " " + f2.getValue() + " " + f3.getValue());
+		System.out.println(f1.equals(f2));
+	}
+}
+
+class Foo {
+	/*
+	 * The primitive type are mutable, but they are not sharable- That's why no
+	 * 2 sections of code will ever be referring to the same int variable (they
+	 * are always pass by value). So you can change your copy and no one else
+	 * sees the change, and vice versa.
+	 */
+
+	private AtomicInteger value;
+
+	public void setValue(AtomicInteger value) {
+		this.value = value;
+	}
+
+	public AtomicInteger getValue() {
+		return value;
+	}
+}

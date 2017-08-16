@@ -1,0 +1,46 @@
+package com.fqyuan.maze;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+
+public class MyMaze {
+	class Coord {
+		/*
+		 * Why y goes before x?
+		 * The coordination goes as follows.
+		 * 	--------------------->
+		 * 	|
+		 * 	|
+		 * 	|
+		 *	\/
+		 */
+		private int y;
+		private int x;
+
+		public Coord(int y, int x) {
+			this.y = y;
+			this.x = x;
+		}
+
+		@Override
+		public String toString() {
+			return String.valueOf(y).concat(String.valueOf(x));
+		}
+	}
+
+	public static ArrayList<Coord> shortestPath(char[][] board) {
+		ArrayList<Coord> shortestPathToGoal = new ArrayList<>();
+
+		return shortestPathToGoal;
+	}
+	private static void walk(char[][] board, int y, int x, int keyRing, boolean[][]visited, ArrayDeque<Coord> path, ArrayList<Coord> shortestPath){
+		if(y<0||y>board.length||x<0||x>board[y].length||visited[y][x])
+			return;	//Out of boundary.
+	}
+	private static boolean[][] initVisited(char[][] board) {
+		boolean visited[][] = new boolean[board.length][];
+		for (int y = 0; y < board[y].length; y++)
+			visited[y] = new boolean[board[y].length];
+		return visited;
+	}
+}
